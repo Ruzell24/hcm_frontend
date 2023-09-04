@@ -1,6 +1,12 @@
+import DashboardHeader from "./components/Header"
+import { useAuth } from "../shared/context/user/UserContext"
+
 const Dashboard = () => {
+    const {user} = useAuth();
     return (
-        <h1>Dashboard</h1>
+        <>
+        <DashboardHeader user={user}/>
+        </>
     )
 }
 
