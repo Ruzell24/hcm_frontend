@@ -4,6 +4,7 @@ import service from '../service/user';
 import { useQuery } from "react-query";
 import React from "react";
 import AuthProvider from "../context/user/UserContext";
+import Loading from "./Loading";
 
 const PrivateRoute = ({ children }) => {
     const token = Cookies.get('token');
@@ -14,7 +15,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     if (query.isLoading){
-        return <h1>Loading....</h1>
+        return <Loading/>
     }
     
     if(query.isError){
