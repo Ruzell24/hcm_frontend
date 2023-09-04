@@ -13,12 +13,12 @@ const PrivateRoute = ({ children }) => {
         return <Navigate to={'/'} />
     }
 
-    if(query.isError){
-        return <Navigate to={'/'} />
-    }
-
     if (query.isLoading){
         return <h1>Loading....</h1>
+    }
+    
+    if(query.isError){
+        return <Navigate to={'/'} />
     }
 
     return <AuthProvider userDetails={query.data}>{children}</AuthProvider>

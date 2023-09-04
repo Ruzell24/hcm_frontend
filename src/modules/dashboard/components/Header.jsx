@@ -1,7 +1,16 @@
+import Cookies from 'js-cookie';
 import React from 'react';
-import { FaSignOutAlt, FaPlay } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const DashboardHeader = ({ user, onLogout, onStartPlay }) => {
+const DashboardHeader = ({ user,  onStartPlay }) => {
+  const navigate = useNavigate();
+  
+  const onLogout = () => {
+    Cookies.remove('token')
+    navigate('/')
+  }
+
   return (
     <header className="shadow-md p-4">
       <div className="flex justify-end items-center">

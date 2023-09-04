@@ -15,7 +15,7 @@ const useAuth = () => {
 
 
 const AuthProvider = ({children , userDetails}) => {
-    const user = userDetails.user.userDetails
+    const user = userDetails.user?.userDetails
     return (
         <AuthContext.Provider value={{ user }}>
             {children}
