@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
-import { Link  ,Navigate,useNavigate } from 'react-router-dom';
-import service from '../sign-up/service';
+import { Link  ,Navigate } from 'react-router-dom';
+import service from '../shared/service/login';
 import Cookies from 'js-cookie';
 
 
 const Login = () => {
-  const navigate = useNavigate();
+
 
   const [userCredentials, setUserCredentials] = useState({
     email: '',

@@ -7,6 +7,7 @@ import {
   QueryClientProvider,
 } from 'react-query'
 import Dashboard from './modules/dashboard';
+import PrivateRoute from './modules/shared/utils/PrivateRoute';
 
 function App() {
   const queryClient = new QueryClient()
@@ -16,7 +17,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        } />
       </Routes>
     </Router>
    </QueryClientProvider>

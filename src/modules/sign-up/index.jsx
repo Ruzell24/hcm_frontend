@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import service from '../sign-up/service';
+import service from '../shared/service/sign-up';
 
 import { useMutation } from 'react-query';
 
