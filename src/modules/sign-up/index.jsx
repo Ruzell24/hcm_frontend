@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import service from '../sign-up/service';
+
+import { useMutation } from 'react-query';
+
 const SignUp = () => {
   const [userCredentials, setUserCredentials] = useState({
     username: '',
@@ -9,6 +13,7 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+  const {mutate} = useMutation(service.createUser)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +23,7 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const signUpPayload = {
@@ -29,9 +34,14 @@ const SignUp = () => {
         username: userCredentials.username
     }
 
-
-    // You can perform form submission logic here
-    console.log(signUpPayload);
+    mutate(signUpPayload , {
+      onSuccess: () => {
+        alert("User sign up successfully")
+      },
+      onError: () => {
+        alert("Sign up failed")
+      },
+    })
   };
 
   return (
