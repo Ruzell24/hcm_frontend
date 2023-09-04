@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { Link  ,Navigate,useNavigate } from 'react-router-dom';
+import service from '../sign-up/service';
+import Cookies from 'js-cookie';
 
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
   });
+  const {mutate , isSuccess} = useMutation(service.loginUser)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,20 +22,31 @@ const Login = () => {
     });
   };
 
+  const handleActionSuccess = (data) => {
+    Cookies.set('token', data.user.token);
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const loginPayload = {
-
-
         email: userCredentials.email,
         password: userCredentials.password,
   
     }
 
+    mutate(loginPayload , {
+        onSuccess: (data) => {
+          alert("User login successfully");
+          handleActionSuccess(data);
+          
+        },
+        onError: () => {
+          alert("User login failed");
+        },
+      })
 
-    // You can perform form submission logic here
-    console.log(loginPayload);
   };
 
   return (
@@ -85,6 +102,7 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      {isSuccess && <Navigate to={'/dashboard'} replace={true}/>}
     </div>
   );
 };

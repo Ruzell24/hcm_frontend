@@ -6,6 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import Dashboard from './modules/dashboard';
 
 function App() {
   const queryClient = new QueryClient()
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
    </QueryClientProvider>
