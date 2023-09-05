@@ -26,15 +26,19 @@ const DashboardHeader = ({ user , fetchLatestOngoingEntry }) => {
     navigate('/');
     localStorage.clear()
     Cookies.remove('token');
-  
   };
+
+  const onSuccessAction = () => {
+    localStorage.removeItem('startTime');
+    localStorage.removeItem('elapsedTime');
+    fetchLatestOngoingEntry(TIME_ENTRY_KEY)
+    fetchLatestOngoingEntry(USER_ENTRY_KEY)
+  }
 
   const onTimeIn = () => {
     createTimeEntryMutate({ user_id: user.id }, {
       onSuccess: () => {
-        localStorage.removeItem('startTime');
-        localStorage.removeItem('elapsedTime');
-        fetchLatestOngoingEntry(TIME_ENTRY_KEY)
+        onSuccessAction();
       },
     });
   };
@@ -42,11 +46,7 @@ const DashboardHeader = ({ user , fetchLatestOngoingEntry }) => {
   const onTimeOut = (entryId) => {
     endTimeEntryMutate({ id: entryId }, {
       onSuccess: () => {
-        localStorage.removeItem('startTime');
-        localStorage.removeItem('elapsedTime');
-        fetchLatestOngoingEntry(TIME_ENTRY_KEY)
-        fetchLatestOngoingEntry(USER_ENTRY_KEY)
-
+        onSuccessAction();
         setElapsedTime(0);
       },
     });
