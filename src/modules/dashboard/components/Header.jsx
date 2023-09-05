@@ -23,8 +23,10 @@ const DashboardHeader = ({ user , fetchLatestOngoingEntry }) => {
   
 
   const onLogout = () => {
-    Cookies.remove('token');
     navigate('/');
+    localStorage.clear()
+    Cookies.remove('token');
+  
   };
 
   const onTimeIn = () => {
