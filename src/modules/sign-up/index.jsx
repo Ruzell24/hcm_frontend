@@ -13,7 +13,7 @@ const SignUp = () => {
     email: '',
     password: '',
   });
-  const {mutate} = useMutation(service.createUser)
+  const {mutate , isLoading} = useMutation(service.createUser)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -127,10 +127,11 @@ const SignUp = () => {
           </div>
           <div className="mb-6">
             <button
+              disabled={isLoading}
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
             >
-              Sign In
+              {isLoading ? "Loading..." : "Sign In"}
             </button>
           </div>
         </form>
