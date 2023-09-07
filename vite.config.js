@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   define: {
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
+    SERVER: process.env.VITE_SERVER,
   },
 })

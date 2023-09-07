@@ -36,6 +36,13 @@ const SignUp = () => {
 
     mutate(signUpPayload , {
       onSuccess: () => {
+        setUserCredentials({
+          username: '',
+          last_name: '',
+          first_name: '',
+          email: '',
+          password: '',
+        })
         alert("User sign up successfully")
       },
       onError: () => {
